@@ -1,89 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardTask"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="4dp">
+    android:layout_marginHorizontal="12dp"
+    android:layout_marginVertical="6dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="@color/active_task_bg"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="12dp">
+        android:orientation="horizontal">
 
-        <!-- Title -->
-        <TextView
-            android:id="@+id/tvTaskTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Task Title"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black" />
+        <!-- Priority Line Indicator -->
+        <View
+            android:id="@+id/viewPriorityLine"
+            android:layout_width="4dp"
+            android:layout_height="match_parent"
+            android:background="@color/priority_medium" />
 
-        <!-- Description -->
-        <TextView
-            android:id="@+id/tvTaskDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Task Description"
-            android:textSize="14sp"
-            android:textColor="@android:color/darker_gray" />
-
-        <!-- Priority + Done + Delete -->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="8dp"
-            android:gravity="center_vertical">
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-            <!-- Priority -->
+            <!-- Header Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/ivPriorityIcon"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_priority_medium"
+                    app:tint="@color/priority_medium" />
+
+                <TextView
+                    android:id="@+id/tvPriority"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="MEDIUM"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="2dp"
+                    android:background="@drawable/priority_medium_bg"
+                    android:textColor="@color/priority_medium_text"
+                    android:letterSpacing="0.1" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <!-- Action Buttons -->
+                <CheckBox
+                    android:id="@+id/cbTaskComplete"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="8dp"
+                    android:button="@drawable/checkbox_selector"
+                    android:background="@android:color/transparent" />
+
+                <ImageView
+                    android:id="@+id/ivDeleteTask"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_delete"
+                    android:background="@drawable/ripple_circle"
+                    android:padding="6dp"
+                    app:tint="@color/text_secondary"
+                    android:contentDescription="Delete Task" />
+
+            </LinearLayout>
+
+            <!-- Task Title -->
             <TextView
-                android:id="@+id/tvPriority"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:id="@+id/tvTaskTitle"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="HIGH"
-                android:textSize="12sp"
+                android:layout_marginTop="12dp"
+                android:text="Task Title"
+                android:textSize="18sp"
                 android:textStyle="bold"
-                android:padding="4dp"
-                android:background="@drawable/priority_background"
-                android:textColor="@android:color/white" />
+                android:textColor="@color/text_primary"
+                android:fontFamily="sans-serif-medium"
+                android:lineSpacingExtra="2dp" />
 
-            <!-- Done checkbox -->
-            <CheckBox
-                android:id="@+id/cbTaskComplete"
-                android:layout_width="wrap_content"
+            <!-- Task Description -->
+            <TextView
+                android:id="@+id/tvTaskDescription"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Done" />
+                android:layout_marginTop="6dp"
+                android:text="Task Description"
+                android:textSize="14sp"
+                android:textColor="@color/text_secondary"
+                android:lineSpacingExtra="2dp"
+                android:maxLines="3"
+                android:ellipsize="end" />
 
-            <!-- Delete icon -->
-            <ImageView
-                android:id="@+id/ivDeleteTask"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginStart="8dp"
-                android:src="@drawable/ic_delete"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:padding="4dp"
-                android:contentDescription="Delete Task" />
+            <!-- Footer -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:src="@drawable/ic_calendar"
+                    app:tint="@color/text_tertiary" />
+
+                <TextView
+                    android:id="@+id/tvCreatedAt"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="Created: Jan 01, 2024"
+                    android:textSize="12sp"
+                    android:textColor="@color/text_tertiary" />
+
+                <!-- Task Status Indicator -->
+                <View
+                    android:id="@+id/viewStatusIndicator"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:background="@drawable/status_indicator"
+                    android:backgroundTint="@color/accent_color" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
-        <!-- Created date -->
+    </LinearLayout>
+
+    <!-- Completed Overlay (only visible when task is completed) -->
+    <LinearLayout
+        android:id="@+id/layoutCompletedOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:visibility="gone"
+        android:background="#80E8F5E8">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_check_circle"
+            app:tint="@color/success_color" />
+
         <TextView
-            android:id="@+id/tvCreatedAt"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="Created: Jan 01, 2024"
-            android:textSize="12sp"
-            android:textColor="@android:color/darker_gray"
-            android:gravity="end" />
+            android:layout_marginStart="8dp"
+            android:text="Completed"
+            android:textColor="@color/success_color"
+            android:textStyle="bold"
+            android:textSize="14sp" />
 
     </LinearLayout>
+
 </androidx.cardview.widget.CardView>

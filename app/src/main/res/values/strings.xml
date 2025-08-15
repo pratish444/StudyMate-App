@@ -1,3 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">BasicTaskManagerApp</string>
+    <string name="app_name">TaskMaster Pro</string>
+    <string name="login_title">Welcome Back</string>
+    <string name="signup_title">Create Account</string>
+    <string name="email_hint">Email Address</string>
+    <string name="password_hint">Password</string>
+    <string name="login_button">Sign In</string>
+    <string name="signup_button">Sign Up</string>
+    <string name="add_task">Add Task</string>
+    <string name="task_title">Task Title</string>
+    <string name="task_description">Description</string>
+    <string name="save_task">Save Task</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="high_priority">High Priority</string>
+    <string name="medium_priority">Medium Priority</string>
+    <string name="low_priority">Low Priority</string>
+
+    <!-- Main Activity Strings -->
+    <string name="welcome_back_user">Welcome back, User!</string>
+    <string name="tasks_completed">0 of 0 completed</string>
+    <string name="your_tasks">Your Tasks</string>
+    <string name="filter">Filter</string>
+    <string name="no_tasks_yet">No tasks yet</string>
+    <string name="add_first_task">Tap the + button to add your first task</string>
+
+    <!-- Other common strings -->
+    <string name="save">Save</string>
+    <string name="edit">Edit</string>
 </resources>

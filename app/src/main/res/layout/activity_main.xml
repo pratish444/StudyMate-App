@@ -1,28 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    tools:context=".MainActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <!-- App Bar Layout -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:elevation="0dp">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <!-- Header Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:layout_marginTop="24dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp"
+                android:layout_gravity="center"
+                app:cardBackgroundColor="@color/header_card_bg">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:id="@+id/tvWelcome"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@string/welcome_back_user"
+                        android:textColor="@color/text_primary"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvTaskCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/tasks_completed"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="16sp" />
+
+                    <!-- Progress Indicator -->
+                    <com.google.android.material.progressindicator.LinearProgressIndicator
+                        android:id="@+id/progressIndicator"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        app:indicatorColor="@color/accent_color"
+                        app:trackColor="@color/progress_track"
+                        app:trackCornerRadius="10dp" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Main Content -->
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="8dp"/>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <ProgressBar
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Tasks Section Header -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="16dp"
+                android:paddingTop="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/your_tasks"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_primary"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnFilter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:minHeight="48dp"
+                    android:text="@string/filter"
+                    android:textSize="12sp"
+                    app:icon="@drawable/ic_filter"
+                    app:iconSize="16dp"
+                    app:cornerRadius="18dp"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    app:backgroundTint="@color/filter_button_bg" />
+
+            </LinearLayout>
+
+            <!-- RecyclerView -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:paddingHorizontal="8dp"
+                android:paddingBottom="100dp"
+                android:clipToPadding="false" />
+
+            <!-- Empty State -->
+            <LinearLayout
+                android:id="@+id/tvEmptyState"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:visibility="gone"
+                android:layout_marginTop="50dp">
+
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/ic_empty_tasks"
+                    android:alpha="0.6"
+                    android:contentDescription="@string/no_tasks_yet"
+                    app:tint="@color/text_secondary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/no_tasks_yet"
+                    android:textSize="24sp"
+                    android:textColor="@color/text_primary"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/add_first_task"
+                    android:textSize="16sp"
+                    android:textColor="@color/text_secondary"
+                    android:gravity="center" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Loading -->
+    <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/progressBarMain"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_gravity="center"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        app:indicatorColor="@color/accent_color"
+        app:trackColor="@color/progress_track" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <!-- Floating Action Button -->
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fabAddTask"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:src="@android:drawable/ic_input_add"
-        android:tint="@android:color/white"
-        android:layout_gravity="bottom|end"/>
+        android:layout_margin="20dp"
+        android:text="@string/add_task"
+        app:icon="@drawable/ic_add"
+        app:iconSize="24dp"
+        app:cornerRadius="28dp"
+        app:backgroundTint="@color/accent_color"
+        app:iconTint="@android:color/white"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        app:elevation="12dp"
+        app:pressedTranslationZ="16dp"
+        android:layout_gravity="bottom|end" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
