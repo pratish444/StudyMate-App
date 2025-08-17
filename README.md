@@ -1,4 +1,4 @@
-# TaskMaster Pro - Android Task Manager App
+# StudyMate - Android Task Manager App
 
 A comprehensive task management application built with Android (Kotlin) using Firebase Authentication, Realtime Database, and Cloud Firestore.
 
